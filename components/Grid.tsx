@@ -1,8 +1,13 @@
-import React from "react";
+'use client'
+
+import React, { useEffect } from "react";
 import { BentoGrid, BentoGridItem } from "./ui/BentoGrid";
 import { gridItems } from "@/data";
 
 const Grid = () => {
+  useEffect(() => {
+    console.log("Is running in browser:", typeof window !== "undefined");
+  }, []);
   return (
     <section id="about">
       <BentoGrid>

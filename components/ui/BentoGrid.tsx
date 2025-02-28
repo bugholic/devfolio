@@ -2,12 +2,12 @@
 
 import { cn } from "@/utils/cn";
 import { BackgroundGradientAnimation } from "./gradient-bg";
-import Lottie from "react-lottie";
+// import Lottie from "react-lottie";
 import { useState } from "react";
 import animationData from "@/data/confetti.json";
 import MagicButton from "./MagicButton";
 import { IoCopyOutline } from "react-icons/io5";
-import GridGlobe from "./GridGlobe";
+// import GridGlobe from "./GridGlobe";
 
 export const BentoGrid = ({
   className,
@@ -52,9 +52,13 @@ export const BentoGridItem = ({
 
   const [copied, setCopied] = useState(false);
 
+  // const [isClient, setIsClient] = useState(false);
+
   const handleCopy = () => {
-    navigator.clipboard.writeText("developerayu@gmail.com");
-    setCopied(true);
+    if (typeof window !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText("developerayu@gmail.com");
+      setCopied(true);
+    }
   };
 
   return (
@@ -79,7 +83,7 @@ export const BentoGridItem = ({
             />
           )}
         </div>
-          {/* {id===2 && <GridGlobe />} */}
+        {/* {id===2 && <GridGlobe />} */}
         <div
           className={`absolute right-0 -bottom-5 ${
             id === 5 && "w-full opacity-80 "
@@ -145,7 +149,7 @@ export const BentoGridItem = ({
 
           {id === 6 && (
             <div className="mt-5 relative">
-              <div className={`absolute -bottom-5 right-0 `}>
+              {/* <div className={`absolute -bottom-5 right-0 `}>
                 <Lottie
                   options={{
                     loop: copied,
@@ -156,7 +160,7 @@ export const BentoGridItem = ({
                     },
                   }}
                 />
-              </div>
+              </div> */}
               <MagicButton
                 title={copied ? "Email Copied" : "Copy my email"}
                 icon={<IoCopyOutline />}
